@@ -34,6 +34,6 @@ jobs:
           git checkout main
           git pull --ff-only origin main
           .venv/bin/pip install -r requirements.txt
-          .venv/bin/python -m unittest discover -s tests
+          NLTK_DATA=/srv/stroka/nltk_data .venv/bin/python -m unittest discover -s tests
           sudo -n /usr/bin/systemctl restart stroka-rhyme.service
           REMOTE
