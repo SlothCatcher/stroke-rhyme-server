@@ -29,11 +29,11 @@ jobs:
           printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o BatchMode=yes "$DEPLOY_USER@$DEPLOY_HOST" 'bash -s' <<'REMOTE'
           set -euo pipefail
-          cd /srv/stroka/rhyme-server
+          cd /home/stroke-rhyme-server
           git fetch origin main
           git checkout main
           git pull --ff-only origin main
           .venv/bin/pip install -r requirements.txt
-          NLTK_DATA=/srv/stroka/nltk_data .venv/bin/python -m unittest discover -s tests
+          NLTK_DATA=/home/stroke-rhyme-server/nltk_data .venv/bin/python -m unittest discover -s tests
           sudo -n /usr/bin/systemctl restart stroka-rhyme.service
           REMOTE

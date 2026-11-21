@@ -6,15 +6,15 @@ After=network.target
 Type=simple
 User=stroka
 Group=stroka
-WorkingDirectory=/srv/stroka/rhyme-server
-Environment=NLTK_DATA=/srv/stroka/nltk_data
-ExecStart=/srv/stroka/rhyme-server/.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8002
+WorkingDirectory=/home/stroke-rhyme-server
+Environment=NLTK_DATA=/home/stroke-rhyme-server/nltk_data
+ExecStart=/home/stroke-rhyme-server/.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8002
 Restart=on-failure
 RestartSec=3
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
-ProtectHome=true
+ProtectHome=read-only
 
 [Install]
 WantedBy=multi-user.target
